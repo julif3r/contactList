@@ -1,0 +1,60 @@
+<form class="form-create" [formGroup]="formGroup">
+    <label class="flex" for="firstName">
+        First Name:
+        <input type="text" formControlName="firstNameControl"  maxlength="20" />
+
+        <div class="input-error" *ngIf="firstName.errors && firstName.touched">
+            <div *ngIf="firstName.errors.required">
+                First Name is required.
+            </div>
+        </div>
+    </label>
+
+    <label class="flex" for="lastName">
+        Last Name:
+        <input type="text" formControlName="lastNameControl"  maxlength="50" />
+
+
+        <div class="input-error" *ngIf="lastName.errors && lastName.touched">
+            <div *ngIf="lastName.errors.required">
+                Last Name is required.
+            </div>
+        </div>
+    </label>
+
+    <label class="flex" for="country">
+        Country:
+
+        <select formControlName="countryControl">
+            <option value="" disabled>Select Country</option>
+            <option *ngFor="let country of countryList" [value]="country.name">{{ country.name }}</option>
+        </select>
+
+        <div class="input-error" *ngIf="country.errors && country.touched">
+            <div *ngIf="country.errors.required">  
+                Country is required.
+            </div>
+        </div>
+    </label>
+
+    <label class="flex" for="email">
+        Email:
+        <input type="text" formControlName="emailControl"/>
+
+        <div class="input-error" *ngIf="email.errors && email.touched">
+            <div *ngIf="email.errors.required">
+                Email is required.
+            </div>
+
+            <div *ngIf="email.errors.pattern">
+                Email is not valid.
+            </div>
+        </div>
+    </label>
+
+    <div class="flex">
+        <button type="button" [routerLink]="['/contact-list']">Cancel</button>
+        <button type="button" (click)="submit()" [disabled]="!formGroup.valid">Submit</button>
+    </div>
+
+</form>

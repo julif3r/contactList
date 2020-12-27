@@ -1,0 +1,22 @@
+<div class="table-content" *ngIf="contacts$">   
+    <h1 class="title flex">Contacts <button [routerLink]="['/contact-create']">Create Contact</button> </h1>
+    <table style="width:100%">
+        <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>Actions</th>
+        </tr>
+        <tr *ngFor="let contact of contacts$ | async">
+            <td>{{ contact.firstName }}</td>
+            <td>{{ contact.lastName }}</td>
+            <td>{{ contact.email }}</td>
+            <td>{{ contact.country }}</td>
+            <td>
+                <span class="action-link" (click)="deleteContact(contact.id)">Delete</span> &nbsp;
+                <span class="action-link" [routerLink]="['/contact-edit/'+contact.id]">Edit</span> &nbsp;
+            </td>
+        </tr>
+    </table>
+</div>
